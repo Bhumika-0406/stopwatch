@@ -1,19 +1,17 @@
 let timer, times = 0, running = false;
 const display = document.getElementById("display");
 
-const formatTime = ms => {
-    let h = Math.floor(ms / 3600000);
-   
-    let m = Math.floor((ms % 3600000) / 60000);
 
-    let s = Math.floor((ms % 60000) / 1000);
+const formatTime = (ms) => {
+    let minutes = Math.floor(ms / 60000); 
+    let seconds = Math.floor((ms % 60000) / 1000); 
+    let milliseconds = ms % 1000;
 
+    if (minutes < 10) minutes = "0" + minutes;
+    if (seconds < 10) seconds = "0" + seconds;
+     if (milliseconds < 10) milliseconds = "0" + milliseconds;
 
-    if (h < 10) h = "0" + h;
-    if (m < 10) m = "0" + m;
-    if (s < 10) s = "0" + s;
-
-    return h + ":" + m + ":" + s;
+    return minutes+ ":" + seconds + ":" + milliseconds ;
 };
 const updateDisplay = () => display.textContent = formatTime(times);
 
